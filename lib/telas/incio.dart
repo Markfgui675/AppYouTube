@@ -1,4 +1,6 @@
+import 'package:appyoutube/api.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Inicio extends StatefulWidget {
   const Inicio({Key? key}) : super(key: key);
@@ -10,9 +12,16 @@ class Inicio extends StatefulWidget {
 class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
+
+    Api api = Api();
+
     return Container(
       child: Center(
-        child: Text('Inicio foi'),
+        child: Column(
+          children: <Widget>[
+            TextField(keyboardType: TextInputType.text,)
+          ],
+        )
       ),
     );
   }

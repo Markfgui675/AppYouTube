@@ -8,7 +8,6 @@ class Api {
 
   pesquisar(String pesquisa) async{
 
-
     http.Response response = await http.get(
       URL_BASE + 'search'
           "?part=snippet"

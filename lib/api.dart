@@ -1,3 +1,4 @@
+import 'package:appyoutube/%20model/Video.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -19,7 +20,15 @@ class Api {
     );
 
     if(response.statusCode == 200){
-      print(response.body);
+      Map<String, dynamic> dadosJson = json.decode(response.body);
+
+      //List<Video> videos = dadosJson['items'];
+
+      for(var video in dadosJson['items']){
+        print('Resultado: ' + video.toString());
+      }
+
+      //print(dadosJson['items'][0]['snippet']['title'].toString());
     } else{
 
     }

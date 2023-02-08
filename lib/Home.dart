@@ -1,3 +1,4 @@
+import 'package:appyoutube/CustomSearchDelegate.dart';
 import 'package:appyoutube/telas/biblioteca.dart';
 import 'package:appyoutube/telas/emalta.dart';
 import 'package:appyoutube/telas/incio.dart';
@@ -15,12 +16,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   int _indice = 0;
+  String resultado = "";
 
   @override
   Widget build(BuildContext context) {
 
     List<Widget> telas = [
-      Inicio(),
+      Inicio(resultado),
       EmAlta(),
       Inscricoes(),
       Biblioteca()
@@ -37,7 +39,11 @@ class _HomeState extends State<Home> {
         title: Image.asset('imagens/youtube.png', width: 110,),
         actions: <Widget>[
           IconButton(onPressed: (){print('ação: videocam');}, icon: Icon(Icons.videocam, color: Colors.black)),
-          IconButton(onPressed: (){print('ação: search');}, icon: Icon(Icons.search, color: Colors.black)),
+          IconButton(onPressed: () async {String res = await showSearch(context: context, delegate: CustomSearchDelegate()).toString();
+                                          setState(() {
+                                            resultado = res;
+                                          });},
+                      icon: Icon(Icons.search, color: Colors.black)),
           IconButton(onPressed: (){print('ação: account');}, icon: Icon(Icons.account_circle, color: Colors.black)),
         ],
         backgroundColor: Color(0xFFFFFFFF),

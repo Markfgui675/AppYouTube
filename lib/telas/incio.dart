@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import '../ model/Video.dart';
 
 class Inicio extends StatefulWidget {
-  const Inicio({Key? key}) : super(key: key);
+  String pesquisa;
+
+  Inicio(this.pesquisa);
 
   @override
   State<Inicio> createState() => _InicioState();
@@ -15,21 +17,13 @@ class Inicio extends StatefulWidget {
 
 class _InicioState extends State<Inicio> {
 
-  TextEditingController _search = TextEditingController();
 
-  _pesqui(){
-
-    Api api = Api();
-    api.pesquisar(_search.text);
-
-  }
-
-  _listarVideos(){
+  _listarVideos(String p){
 
     Future<List<Video>?> videos;
 
     Api api = Api();
-    videos = api.pesquisar(_search.text);
+    videos = api.pesquisar(p);
 
     return videos;
   }
@@ -39,7 +33,7 @@ class _InicioState extends State<Inicio> {
   Widget build(BuildContext context) {
 
     return FutureBuilder<List<Video>>(
-        future: _listarVideos(),
+        future: _listarVideos(widget.pesquisa),
         builder: (context, snapshot){
           switch(snapshot.connectionState){
             case ConnectionState.none:

@@ -27,10 +27,37 @@ class _InicioState extends State<Inicio> {
 
     return videos;
   }
+  
+  @override
+  void initState() {
+    super.initState();
+    print('chamado 1 - initState');
+  }
+  
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('chamado 2 - didChangeDependencies');
+  }
+
+  @override
+  void didUpdateWidget(covariant Inicio oldWidget) {
+    //atualiza o widget
+    super.didUpdateWidget(oldWidget);
+    print('chamado 2 - didUpdateDependencies');
+  }
+  
+  @override
+  void dispose() {
+    super.dispose();
+    print('chamado 4 - dispose');
+  }
 
 
   @override
   Widget build(BuildContext context) {
+
+    print('chamado 3 - build');
 
     return FutureBuilder<List<Video>>(
         future: _listarVideos(widget.pesquisa),
